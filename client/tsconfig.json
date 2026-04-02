@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ES2020",
+    "moduleResolution": "node",
+    "outDir": "./js",
+    "rootDir": "./ts",
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": ["ES6", "DOM"]
+  },
+  "include": ["ts/**/*"],
+  "exclude": ["node_modules", "vendor"]
+}

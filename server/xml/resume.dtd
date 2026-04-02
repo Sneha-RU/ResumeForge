@@ -1,0 +1,39 @@
+<!ELEMENT resume (personal, summary, experience, education, skills, projects, certifications?)>
+
+<!ELEMENT personal (name, jobtitle, email, phone, linkedin?, github?, location?)>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT jobtitle (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT linkedin (#PCDATA)>
+<!ELEMENT github (#PCDATA)>
+<!ELEMENT location (#PCDATA)>
+
+<!ELEMENT summary (#PCDATA)>
+
+<!ELEMENT experience (job+)>
+<!ELEMENT job (jobtitle, company, startdate, enddate, current?, description)>
+<!ELEMENT company (#PCDATA)>
+<!ELEMENT startdate (#PCDATA)>
+<!ELEMENT enddate (#PCDATA)>
+<!ELEMENT current (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+
+<!ELEMENT education (degree+)>
+<!ELEMENT degree (title, institution, year, grade?)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT institution (#PCDATA)>
+<!ELEMENT year (#PCDATA)>
+<!ELEMENT grade (#PCDATA)>
+
+<!ELEMENT skills (skill+)>
+<!ELEMENT skill (#PCDATA)>
+
+<!ELEMENT projects (project+)>
+<!ELEMENT project (name, techstack, description, url?)>
+<!ELEMENT techstack (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+
+<!ELEMENT certifications (cert*)>
+<!ELEMENT cert (name, issuer, year)>
+<!ELEMENT issuer (#PCDATA)>
