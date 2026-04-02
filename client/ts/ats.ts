@@ -1,4 +1,7 @@
 import { ResumeData, getFormData } from './form.js';
+
+// change this to your hosting URL when deploying e.g. 'https://yourapp.rf.gd'
+const BACKEND_URL = '';
 declare var bootstrap: any;
 export interface Rule {
   name: string;
@@ -127,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const { buildXML } = await import('./preview.js');
       const xmlStr = buildXML(data);
 
-      const saveResp = await fetch('../../server/php/generate-xml.php', {
+      const saveResp = await fetch(`${BACKEND_URL}/server/php/generate-xml.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ xml: xmlStr })
@@ -137,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         throw new Error("Could not save XML for ATS check");
       }
 
-      const atsResp = await fetch(`../../server/php/ats-checker.php?t=${Date.now()}`, {
+      const atsResp = await fetch(`${BACKEND_URL}/server/php/ats-checker.php?t=${Date.now()}`, {
         cache: 'no-store'
       });
       const atsData = await atsResp.json();

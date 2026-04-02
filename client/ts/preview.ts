@@ -1,5 +1,8 @@
 import { ResumeData, getFormData, showToast } from './form.js';
 
+// change this to your hosting URL when deploying e.g. 'https://yourapp.rf.gd'
+const BACKEND_URL = '';
+
 export function buildXML(data: ResumeData): string {
   const escapeXml = (unsafe: string) => {
     return unsafe.replace(/[<>&'"]/g, (c) => {
@@ -174,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const xmlStr = buildXML(data);
     
     try {
-      const resp = await fetch('../../server/php/generate-xml.php', {
+      const resp = await fetch(`${BACKEND_URL}/server/php/generate-xml.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ xml: xmlStr })
@@ -209,12 +212,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     try {
       showToast('Generating PDF...', 'success');
-      await fetch('../../server/php/generate-xml.php', {
+      await fetch(`${BACKEND_URL}/server/php/generate-xml.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ xml: xmlStr })
       });
-      window.location.href = '../../server/php/generate-pdf.php';
+      window.location.href = `${BACKEND_URL}/server/php/generate-pdf.php`;
     } catch (e) {
       showToast('Error generating PDF.', 'danger');
     }

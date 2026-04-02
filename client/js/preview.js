@@ -8,6 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { getFormData, showToast } from './form.js';
+// change this to your hosting URL when deploying e.g. 'https://yourapp.rf.gd'
+const BACKEND_URL = '';
 export function buildXML(data) {
     const escapeXml = (unsafe) => {
         return unsafe.replace(/[<>&'"]/g, (c) => {
@@ -176,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = getFormData();
         const xmlStr = buildXML(data);
         try {
-            const resp = yield fetch('../../server/php/generate-xml.php', {
+            const resp = yield fetch(`${BACKEND_URL}/server/php/generate-xml.php`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ xml: xmlStr })
@@ -212,12 +214,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const xmlStr = buildXML(data);
         try {
             showToast('Generating PDF...', 'success');
-            yield fetch('../../server/php/generate-xml.php', {
+            yield fetch(`${BACKEND_URL}/server/php/generate-xml.php`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ xml: xmlStr })
             });
-            window.location.href = '../../server/php/generate-pdf.php';
+            window.location.href = `${BACKEND_URL}/server/php/generate-pdf.php`;
         }
         catch (e) {
             showToast('Error generating PDF.', 'danger');

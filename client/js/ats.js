@@ -8,6 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { getFormData } from './form.js';
+// change this to your hosting URL when deploying e.g. 'https://yourapp.rf.gd'
+const BACKEND_URL = '';
 export function scoreResume(data) {
     let score = 0;
     const passed = [];
@@ -114,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const { buildXML } = yield import('./preview.js');
             const xmlStr = buildXML(data);
-            const saveResp = yield fetch('../../server/php/generate-xml.php', {
+            const saveResp = yield fetch(`${BACKEND_URL}/server/php/generate-xml.php`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ xml: xmlStr })
@@ -123,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!saveRes.success) {
                 throw new Error("Could not save XML for ATS check");
             }
-            const atsResp = yield fetch(`../../server/php/ats-checker.php?t=${Date.now()}`, {
+            const atsResp = yield fetch(`${BACKEND_URL}/server/php/ats-checker.php?t=${Date.now()}`, {
                 cache: 'no-store'
             });
             const atsData = yield atsResp.json();
