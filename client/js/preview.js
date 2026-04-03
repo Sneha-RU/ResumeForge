@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { getFormData, showToast } from './form.js';
-// change this to your hosting URL when deploying e.g. 'https://yourapp.rf.gd'
+
 const BACKEND_URL = '';
 export function buildXML(data) {
     const escapeXml = (unsafe) => {

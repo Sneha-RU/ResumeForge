@@ -8,7 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { getFormData } from './form.js';
-// change this to your hosting URL when deploying e.g. 'https://yourapp.rf.gd'
+
 const BACKEND_URL = '';
 export function scoreResume(data) {
     let score = 0;
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     modalTitle.innerText = "Low ATS Compatibility";
                 }
                 modalCircle.className = `ats-score-circle mx-auto mb-3 shadow d-flex flex-column justify-content-center align-items-center ${colorCls}`;
-                // animate score
+                
                 modalValue.innerText = '0';
                 let currentScore = 0;
                 const duration = 1000;
